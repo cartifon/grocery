@@ -1,13 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myGroceryApp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+
     <title>Grocery</title>
 </head>
 <body>
     <h1>My Grocery Shop</h1>
 
+    <div ui-view></div>
+
 </body>
+
+<script src="src/app.modules.js"></script>
+<script src="src/app.config.js"></script>
+<script src="src/app.controller.js"></script>
+
 </html>
