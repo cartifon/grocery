@@ -3,14 +3,16 @@
         .controller('groceryController', GroceryController);
 
 
-    GroceryController.$inject = ['$scope', '$http'];
+    GroceryController.$inject = ['$scope', 'groceryService'];
 
-    function GroceryController($scope, $http) {
-        $http.get('../grocery-list.json').then( (response) => {
-            console.log(response.data);
-            // response.data.forEach( (item)=> {
-            //     console.log(item.name);
-            // });
+    function GroceryController($scope, groceryService) {
+        var vm = this;
+
+        vm.products = [];
+
+        groceryService.getGroceryList().then((res) => {
+            vm.products = res.data;
         });
+
     }
 })();
