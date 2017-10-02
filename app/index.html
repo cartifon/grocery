@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myGroceryApp">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css"> -->
+    <script src="https://use.fontawesome.com/d76f9188bb.js"></script>
 
     <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
 
     <title>Grocery</title>
 </head>
-<body>
-    <h1>My Grocery Shop</h1>
 
-    <div ui-view></div>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" ui-sref="home">Home</a>
+        <ul class="nav navbar-nav">
+            <li><a ui-sref="about">About</a></li>
+            <li><a ui-sref="cart">Cart</a></li>
+        </ul>
+        <ul class="nav navbar-nav">
+            <li><a href=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div ui-view></div>
+    </div>
 
 </body>
 
