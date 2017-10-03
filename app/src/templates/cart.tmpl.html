@@ -5,6 +5,13 @@
         <span>ID: {{item.id}}</span>
         <span>name: {{item.name}}</span>
         <span>description: {{item.description}}</span>
-        <span> Quantity: {{item.quantity}}</span>
+        <span>Quantity: {{item.quantity}}</span>
+        <span>Price(each): ${{item.price_cents / 100}}</span>
+        <span>Total this item: ${{item.price_cents * item.quantity / 100}}</span>
     </div>
 </section>
+<div class="row">
+    <div class="col-sm-12">
+        <span>Total: ${{cartCtrl.getTotalCart() / 100}}</span>
+    </div>
+</div>

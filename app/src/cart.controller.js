@@ -8,5 +8,10 @@
         var vm = this;
 
         vm.itemsInCart = groceryService.getCart();
+        vm.getTotalCart = getTotalCart;
+
+        function getTotalCart() {
+            return groceryService.getTotalCart();
+        }
     }
 })();

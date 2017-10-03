@@ -1,5 +1,6 @@
 
-.grocery .grocery-item {
+.grocery .grocery-item,
+.cart .cart-item {
     padding-bottom: 15px;
     padding-top: 15px;
     min-height: 150px;

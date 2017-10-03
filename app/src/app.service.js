@@ -15,6 +15,7 @@
         service.getCart = getCart;
         service.getItemInTheCart = getItemInTheCart;
         service.removeFromCart = removeFromCart;
+        service.getTotalCart = getTotalCart;
 
         return service;
 
@@ -64,6 +65,14 @@
             } else {
                 return;
             }
+        }
+
+        function getTotalCart() {
+            let total = 0;
+            for (var i = 0; i < service.cart.length; i++) {
+                total += service.cart[i].price_cents * service.cart[i].quantity;
+            }
+            return total;
         }
     }
 })();
