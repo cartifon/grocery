@@ -1,0 +1,10 @@
+<h1>Here's your cart</h1>
+
+<section class="row cart">
+    <div class="col-sm-3 cart-item" ng-repeat="item in cartCtrl.itemsInCart">
+        <span>ID: {{item.id}}</span>
+        <span>name: {{item.name}}</span>
+        <span>description: {{item.description}}</span>
+        <span> Quantity: {{item.quantity}}</span>
+    </div>
+</section>

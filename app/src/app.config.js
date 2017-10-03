@@ -16,7 +16,16 @@
             controller: 'groceryController as groceryCtrl'
         }
 
-        $stateProvider.state(home).state('about', {});
+        var cart = {
+            name: 'cart',
+            url: '/cart',
+            templateUrl: 'src/templates/cart.tmpl.html',
+            controller: 'cartController as cartCtrl'
+        }
+
+        $stateProvider
+            .state(home)
+            .state(cart);
 
     }
 })();

@@ -1,7 +1,11 @@
 <section class="row grocery">
     <div class="col-sm-3 grocery-item" ng-repeat="item in groceryCtrl.products">
-        <span>ID: {{item.id}}</span>
-        <span>name: {{item.name}}</span>
-        <span>description: {{item.description}}</span>
+        <div>
+            <span>ID: {{item.id}}</span>
+            <span>name: {{item.name}}</span>
+            <span>description: {{item.description}}</span>
+        </div>
+        <button class="btn btn-primary" ng-click="groceryCtrl.addToCart(item)">add to cart +</button>
+        <button class="btn btn-danger" ng-click="groceryCtrl.removeFromCart(item)" ng-show="groceryCtrl.isOnTheCart(item)">remove from cart -</button>
     </div>
 </section>
