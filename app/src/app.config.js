@@ -14,6 +14,7 @@
             url: '/home',
             templateUrl: 'src/templates/list.tmpl.html',
             controller: 'groceryController as groceryCtrl'
+
         }
 
         var cart = {

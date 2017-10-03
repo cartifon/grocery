@@ -12,6 +12,7 @@
         vm.addToCart = addToCart;
         vm.isOnTheCart = isOnTheCart;
         vm.removeFromCart = removeFromCart;
+        vm.removeAllFromCart = removeAllFromCart;
 
         groceryService.getGroceryList().then((res) => {
             vm.products = res.data;
@@ -19,6 +20,12 @@
 
         function addToCart(item) {
             groceryService.addToCart(item);
+        }
+
+        function removeAllFromCart(item) {
+            if(confirm('Are you sure to delete this item?')) {
+                groceryService.removeAllFromCart(item);
+            }
         }
 
         function removeFromCart(item) {

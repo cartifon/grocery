@@ -16,6 +16,7 @@
         service.getItemInTheCart = getItemInTheCart;
         service.removeFromCart = removeFromCart;
         service.getTotalCart = getTotalCart;
+        service.removeAllFromCart = removeAllFromCart;
 
         return service;
 
@@ -41,6 +42,13 @@
                 } else {
                     service.cart.splice(positionItem, 1);
                 }
+            }
+        }
+
+        function removeAllFromCart(item) {
+            let positionItem = getPositionItemInTheCart(item);
+            if (positionItem >= 0 ) {
+                service.cart.splice(positionItem, 1);
             }
         }
 

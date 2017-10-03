@@ -2,12 +2,12 @@
 
 <section class="row cart">
     <div class="col-sm-3 cart-item" ng-repeat="item in cartCtrl.itemsInCart">
-        <span>ID: {{item.id}}</span>
-        <span>name: {{item.name}}</span>
-        <span>description: {{item.description}}</span>
-        <span>Quantity: {{item.quantity}}</span>
-        <span>Price(each): ${{item.price_cents / 100}}</span>
-        <span>Total this item: ${{item.price_cents * item.quantity / 100}}</span>
+        <p>ID: {{item.id}}</p>
+        <p>name: {{item.name}}</p>
+        <p>description: {{item.description}}</p>
+        <p>Quantity: {{item.quantity}}</p>
+        <p>Price(each): ${{item.price_cents / 100}}</p>
+        <p>Total this item: ${{item.price_cents * item.quantity / 100}}</p>
     </div>
 </section>
 <div class="row">

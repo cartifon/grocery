@@ -1,12 +1,40 @@
-<section class="row grocery">
-    <div class="col-sm-3 grocery-item" ng-repeat="item in groceryCtrl.products">
-        <div>
-            <span>ID: {{item.id}}</span>
-            <span>name: {{item.name}}</span>
-            <span>description: {{item.description}}</span>
-            <span>price: ${{item.price_cents / 100}}</span>
+<div class="row">
+    <aside class="col-sm-9">
+        <section class="row grocery">
+            <div class="col-sm-3 grocery-item" ng-repeat="item in groceryCtrl.products" ng-init="item.showsDescription = []">
+                <div>
+                    <p>ID: {{item.id}}</p>
+                    <p>name: {{item.name}}</p>
+                    <p>description:
+                        <span ng-if="item.showsDescription[$index]">{{item.description}}</span>
+                        <button class="btn btn-link" ng-click="item.showsDescription[$index] = true" ng-show="!item.showsDescription[$index]">show more +</button>
+                        <button class="btn btn-link" ng-click="item.showsDescription[$index] = false" ng-show="item.showsDescription[$index]">show less -</button>
+                    </p>
+                    <p>price: ${{item.price_cents / 100}}</p>
+                </div>
+                <button class="btn btn-primary" ng-click="groceryCtrl.addToCart(item)">+ 1</button>
+                <button class="btn btn-warning" ng-click="groceryCtrl.removeFromCart(item)" ng-show="groceryCtrl.isOnTheCart(item)">- 1</button>
+                <button class="btn btn-danger" ng-click="groceryCtrl.removeAllFromCart(item)" ng-show="groceryCtrl.isOnTheCart(item)">remove from cart</button>
+            </div>
+        </section>
+    </aside>
+
+    <aside class="col-sm-3 aside-cart" ng-controller="cartController as cartCtrl">
+        <h3>Your cart</h3>
+
+        <section class="row" ng-if="cartCtrl.itemsInCart.length <= 0">
+            <span>Your cart is empty</span>
+        </section>
+
+        <section class="row" ng-if="cartCtrl.itemsInCart.length > 0">
+            <div class="col-sm-12" ng-repeat="item in cartCtrl.itemsInCart">
+                <p>{{item.name}} - {{item.quantity}} X ${{item.price_cents / 100}} = ${{item.price_cents * item.quantity / 100}}</p>
+            </div>
+        </section>
+        <div class="row" ng-if="cartCtrl.itemsInCart.length > 0">
+            <div class="col-sm-12">
+                <span>Total: ${{cartCtrl.getTotalCart() / 100}}</span>
+            </div>
         </div>
-        <button class="btn btn-primary" ng-click="groceryCtrl.addToCart(item)">add to cart +</button>
-        <button class="btn btn-danger" ng-click="groceryCtrl.removeFromCart(item)" ng-show="groceryCtrl.isOnTheCart(item)">remove from cart -</button>
-    </div>
-</section>
+    </aside>
+</div>
