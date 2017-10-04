@@ -24,18 +24,18 @@
         <section class="row" ng-if="groceryCtrl.groceryList.length > 0">
             <div class="col-sm-12 grocery-item " ng-class="{'purchased': item.purchased}" ng-repeat="item in groceryCtrl.groceryList">
                 <div class="grocery-item-info">
-                    <input type="checkbox" name="itemPurchased{{$index}}" id="itemPurchased{{$index}}" ng-model="item.purchased">
                     <label for="itemPurchased{{$index}}">
+                        <input type="checkbox" name="itemPurchased{{$index}}" id="itemPurchased{{$index}}" ng-model="item.purchased">
                         <span class="grocery-item-title">{{item.title}}</span>
-                        <span class="grocery-item-notes" ng-show="item.showNotes"><br>{{item.notes}}</span>
                     </label>
+                    <span class="grocery-item-notes" ng-show="item.showNotes"><br>{{item.notes}}</span>
                 </div>
                 <div class="row grocery-item-actions">
-                    <div class="col-sm-11">
+                    <div ng-class="{'col-sm-11' : item.showNotes, 'col-sm-12': !item.showNotes}">
                         <a href ng-click="item.showNotes = true" ng-show="!item.showNotes"> show notes +</a>
                         <a href ng-click="item.showNotes = false" ng-show="item.showNotes"> hide notes +</a>
                     </div>
-                    <div class="col-sm-1">
+                    <div class="col-sm-1" ng-show="item.showNotes">
                         <a href ng-click="groceryCtrl.removeItem(item.index)"> &times;</a>
                     </div>
                 </div>
