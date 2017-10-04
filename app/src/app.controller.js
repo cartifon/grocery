@@ -3,9 +3,9 @@
         .controller('groceryController', GroceryController);
 
 
-    GroceryController.$inject = ['$scope', 'groceryService'];
+    GroceryController.$inject = ['$scope'];
 
-    function GroceryController($scope, groceryService) {
+    function GroceryController($scope) {
         var vm = this;
 
         vm.index = 0;
