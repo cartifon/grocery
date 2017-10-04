@@ -2,7 +2,7 @@
     <section class="col-sm-6">
         <form name="groceryItem" class="form-horizontal">
             <div class="form-group">
-                <label for="groceryItemTitle">Grocery title</label>
+                <label for="groceryItemTitle">Grocery title *</label>
                 <input type="text" class="form-control" id="groceryItemTitle" name="groceryItemTitle" ng-model="groceryCtrl.item.title" placeholder="Grocery Title" required>
             </div>
             <div class="form-group">
@@ -22,8 +22,23 @@
         </section>
 
         <section class="row" ng-if="groceryCtrl.groceryList.length > 0">
-            <div class="col-sm-12 grocery-item " ng-repeat="item in groceryCtrl.groceryList">
-                <span>{{item.title}}</span>
+            <div class="col-sm-12 grocery-item " ng-class="{'purchased': item.purchased}" ng-repeat="item in groceryCtrl.groceryList">
+                <div class="grocery-item-info">
+                    <input type="checkbox" name="itemPurchased{{$index}}" id="itemPurchased{{$index}}" ng-model="item.purchased">
+                    <label for="itemPurchased{{$index}}">
+                        <span class="grocery-item-title">{{item.title}}</span>
+                        <span class="grocery-item-notes" ng-show="item.showNotes"><br>{{item.notes}}</span>
+                    </label>
+                </div>
+                <div class="row grocery-item-actions">
+                    <div class="col-sm-11">
+                        <a href ng-click="item.showNotes = true" ng-show="!item.showNotes"> show notes +</a>
+                        <a href ng-click="item.showNotes = false" ng-show="item.showNotes"> hide notes +</a>
+                    </div>
+                    <div class="col-sm-1">
+                        <a href ng-click="groceryCtrl.removeItem(item.index)"> &times;</a>
+                    </div>
+                </div>
             </div>
         </section>
     </aside>

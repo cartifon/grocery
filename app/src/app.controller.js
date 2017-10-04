@@ -16,6 +16,21 @@
                 index: vm.index++
             },
             {
+                title: 'Banana',
+                notes: 'green',
+                index: vm.index++
+            },
+            {
+                title: 'Tomato',
+                notes: 'Really red',
+                index: vm.index++
+            },
+            {
+                title: 'Avocato',
+                notes: '',
+                index: vm.index++
+            },
+            {
                 title: 'Mango',
                 notes: 'Some notes for mango',
                 index: vm.index++
@@ -23,6 +38,7 @@
         ];
 
         vm.addItem = addItem;
+        vm.removeItem = removeItem;
 
         function addItem(item) {
             if($scope.groceryItem.$valid) {
@@ -30,6 +46,16 @@
                 vm.groceryList.push(angular.copy(vm.item));
                 vm.item = "";
                 $scope.groceryItem.$dirty = false;
+            }
+        }
+
+        function removeItem(index) {
+            if (confirm('Are you sure to delete this item?')) {
+                for (var i = 0; i < vm.groceryList.length; i++) {
+                    if(vm.groceryList[i].index === index) {
+                        vm.groceryList.splice(i, 1);
+                    }
+                }
             }
         }
     }

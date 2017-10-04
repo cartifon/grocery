@@ -1,7 +1,15 @@
-
 .grocery .grocery-item {
     border: 1px solid #eee;
     padding-bottom: 5px;
     padding-top: 5px;
     margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.grocery .grocery-item .grocery-item-actions{
+    display: flex;
+}
+.grocery .grocery-item.purchased .grocery-item-title {
+    text-decoration: line-through;
 }
