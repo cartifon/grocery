@@ -8,32 +8,29 @@
     function GroceryController($scope, groceryService) {
         var vm = this;
 
-        vm.products = [];
-        vm.addToCart = addToCart;
-        vm.isOnTheCart = isOnTheCart;
-        vm.removeFromCart = removeFromCart;
-        vm.removeAllFromCart = removeAllFromCart;
-
-        groceryService.getGroceryList().then((res) => {
-            vm.products = res.data;
-        });
-
-        function addToCart(item) {
-            groceryService.addToCart(item);
-        }
-
-        function removeAllFromCart(item) {
-            if(confirm('Are you sure to delete this item?')) {
-                groceryService.removeAllFromCart(item);
+        vm.index = 0;
+        vm.groceryList = [
+            {
+                title: 'Cheese',
+                notes: '',
+                index: vm.index++
+            },
+            {
+                title: 'Mango',
+                notes: 'Some notes for mango',
+                index: vm.index++
             }
-        }
+        ];
 
-        function removeFromCart(item) {
-            groceryService.removeFromCart(item);
-        }
+        vm.addItem = addItem;
 
-        function isOnTheCart(item) {
-            return groceryService.getItemInTheCart(item);
+        function addItem(item) {
+            if($scope.groceryItem.$valid) {
+                vm.item.index = vm.index++;
+                vm.groceryList.push(angular.copy(vm.item));
+                vm.item = "";
+                $scope.groceryItem.$dirty = false;
+            }
         }
     }
 })();

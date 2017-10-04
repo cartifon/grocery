@@ -1,42 +1,30 @@
 <div class="row">
-    <aside class="col-sm-9">
-        <section class="row grocery">
-            <div class="col-sm-6 col-md-4 col-lg-3 grocery-item" ng-repeat="item in groceryCtrl.products" ng-init="item.showsDescription = []">
-                <div>
-                    <!-- <p>ID: {{item.id}}</p> -->
-                    <p>name: {{item.name}}</p>
-                    <p>description:
-                        <span ng-if="item.showsDescription[$index]">{{item.description}}</span>
-                        <button class="btn btn-link" ng-click="item.showsDescription[$index] = true" ng-show="!item.showsDescription[$index]">show more +</button>
-                        <button class="btn btn-link" ng-click="item.showsDescription[$index] = false" ng-show="item.showsDescription[$index]">show less -</button>
-                    </p>
-                    <p>price (each): ${{item.price_cents / 100}}</p>
-                </div>
-                <div class="grocery-buttons">
-                    <button class="btn btn-primary" ng-click="groceryCtrl.addToCart(item)">+ 1</button>
-                    <button class="btn btn-warning" ng-click="groceryCtrl.removeFromCart(item)" ng-show="groceryCtrl.isOnTheCart(item)">- 1</button>
-                    <button class="btn btn-danger" ng-click="groceryCtrl.removeAllFromCart(item)" ng-show="groceryCtrl.isOnTheCart(item)">remove from cart</button>
-                </div>
+    <section class="col-sm-6">
+        <form name="groceryItem" class="form-horizontal">
+            <div class="form-group">
+                <label for="groceryItemTitle">Grocery title</label>
+                <input type="text" class="form-control" id="groceryItemTitle" name="groceryItemTitle" ng-model="groceryCtrl.item.title" placeholder="Grocery Title" required>
             </div>
-        </section>
-    </aside>
+            <div class="form-group">
+                <label for="groceryItemNotes">Grocery notes</label>
+                <input type="text" class="form-control" id="groceryItemNotes" name="groceryItemNotes" ng-model="groceryCtrl.item.notes" placeholder="Grocery Notes">
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="groceryCtrl.addItem()">Add</button>
+        </form>
+    </section>
+</div>
+<div class="row">
+    <aside class="col-sm-9 grocery" >
+        <h3>Your List</h3>
 
-    <aside class="col-sm-3 aside-cart" ng-controller="cartController as cartCtrl">
-        <h3>Your cart</h3>
-
-        <section class="row col-sm-12" ng-if="cartCtrl.itemsInCart.length <= 0">
-            <span>Your cart is empty</span>
+        <section class="row col-sm-12" ng-if="groceryCtrl.groceryList.length <= 0">
+            <span>Your list is empty</span>
         </section>
 
-        <section class="row" ng-if="cartCtrl.itemsInCart.length > 0">
-            <div class="col-sm-12" ng-repeat="item in cartCtrl.itemsInCart">
-                <p>{{item.name}} - {{item.quantity}} X ${{item.price_cents / 100}} = ${{item.price_cents * item.quantity / 100}}</p>
+        <section class="row" ng-if="groceryCtrl.groceryList.length > 0">
+            <div class="col-sm-12 grocery-item " ng-repeat="item in groceryCtrl.groceryList">
+                <span>{{item.title}}</span>
             </div>
         </section>
-        <div class="row" ng-if="cartCtrl.itemsInCart.length > 0">
-            <div class="col-sm-12">
-                <span>Total: ${{cartCtrl.getTotalCart() / 100}}</span>
-            </div>
-        </div>
     </aside>
 </div>

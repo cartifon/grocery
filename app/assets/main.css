@@ -1,29 +1,7 @@
 
 .grocery .grocery-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 270px;
     border: 1px solid #eee;
-}
-
-.grocery .grocery-buttons {
-    display: flex;
-    justify-content: space-between;
-}
-
-.grocery .grocery-item,
-.cart .cart-item {
-    padding-bottom: 15px;
-    padding-top: 15px;
-}
-
-.cart .cart-item {
-    min-height: 150px;
-}
-
-.aside-cart {
-    position: fixed;
-    right: 0;
-    padding-right: 0;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-bottom: 5px;
 }
