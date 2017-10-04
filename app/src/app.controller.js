@@ -9,36 +9,12 @@
         var vm = this;
 
         vm.index = 0;
-        vm.groceryList = [
-            {
-                title: 'Cheese',
-                notes: '',
-                index: vm.index++
-            },
-            {
-                title: 'Banana',
-                notes: 'green',
-                index: vm.index++
-            },
-            {
-                title: 'Tomato',
-                notes: 'Really red',
-                index: vm.index++
-            },
-            {
-                title: 'Avocato',
-                notes: '',
-                index: vm.index++
-            },
-            {
-                title: 'Mango',
-                notes: 'Some notes for mango',
-                index: vm.index++
-            }
-        ];
+        vm.groceryList = [];
 
         vm.addItem = addItem;
         vm.removeItem = removeItem;
+        vm.editItem = editItem;
+        vm.startItemToEdit = startItemToEdit;
 
         function addItem(item) {
             if($scope.groceryItem.$valid) {
@@ -57,6 +33,18 @@
                     }
                 }
             }
+        }
+
+        function editItem(item) {
+            item.title = item.newTitle;
+            item.notes = item.newNotes;
+            item.newTitle = '';
+            item.newNotes = '';
+        }
+
+        function startItemToEdit(item) {
+            item.newTitle = item.title;
+            item.newNotes = item.notes;
         }
     }
 })();

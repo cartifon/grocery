@@ -3,7 +3,8 @@
         <form name="groceryItem" class="form-horizontal">
             <div class="form-group">
                 <label for="groceryItemTitle">Grocery title *</label>
-                <input type="text" class="form-control" id="groceryItemTitle" name="groceryItemTitle" ng-model="groceryCtrl.item.title" placeholder="Grocery Title" required>
+                <input type="text" class="form-control" id="groceryItemTitle" name="groceryItemTitle" ng-model="groceryCtrl.item.title" placeholder="Grocery Title"
+                    required>
             </div>
             <div class="form-group">
                 <label for="groceryItemNotes">Grocery notes</label>
@@ -14,7 +15,7 @@
     </section>
 </div>
 <div class="row">
-    <aside class="col-sm-9 grocery" >
+    <aside class="col-sm-9 grocery">
         <h3>Your List</h3>
 
         <section class="row col-sm-12" ng-if="groceryCtrl.groceryList.length <= 0">
@@ -23,21 +24,41 @@
 
         <section class="row" ng-if="groceryCtrl.groceryList.length > 0">
             <div class="col-sm-12 grocery-item " ng-class="{'purchased': item.purchased}" ng-repeat="item in groceryCtrl.groceryList">
-                <div class="grocery-item-info">
+                <div class="grocery-item-info" ng-show="!item.editMode">
                     <label for="itemPurchased{{$index}}">
                         <input type="checkbox" name="itemPurchased{{$index}}" id="itemPurchased{{$index}}" ng-model="item.purchased">
                         <span class="grocery-item-title">{{item.title}}</span>
                     </label>
-                    <span class="grocery-item-notes" ng-show="item.showNotes"><br>{{item.notes}}</span>
+                    <span class="grocery-item-notes" ng-show="item.showNotes"><br>{{item.notes ? item.notes : 'No notes for this one'}}</span>
                 </div>
-                <div class="row grocery-item-actions">
-                    <div ng-class="{'col-sm-11' : item.showNotes, 'col-sm-12': !item.showNotes}">
+                <div class="row grocery-item-actions" ng-show="!item.editMode">
+                    <div ng-class="{'col-sm-10' : item.showNotes, 'col-sm-11': !item.showNotes}">
                         <a href ng-click="item.showNotes = true" ng-show="!item.showNotes"> show notes +</a>
                         <a href ng-click="item.showNotes = false" ng-show="item.showNotes"> hide notes +</a>
+                    </div>
+                    <div class="col-sm-1">
+                        <a href ng-click="item.editMode = true; groceryCtrl.startItemToEdit(item);"> <i class="fa fa-pencil" aria-hidden="true"></i></a>
                     </div>
                     <div class="col-sm-1" ng-show="item.showNotes">
                         <a href ng-click="groceryCtrl.removeItem(item.index)"> &times;</a>
                     </div>
+                </div>
+                <div class="row" ng-show="item.editMode">
+                    <span>Let's Edit</span>
+                    <div class="col-sm-12 form-horizontal">
+                        <div class="form-group">
+                            <label for="groceryItemTitle">Grocery title *</label>
+                            <input type="text" class="form-control" id="groceryItemTitle" name="groceryItemTitle" ng-model="item.newTitle" placeholder="Grocery Title"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="groceryItemNotes">Grocery notes</label>
+                            <input type="text" class="form-control" id="groceryItemNotes" name="groceryItemNotes" ng-model="item.newNotes" placeholder="Grocery Notes">
+                        </div>
+                        <button type="submit" class="btn btn-primary" ng-click="groceryCtrl.editItem(item); item.editMode = false">Save</button>
+                        <button type="submit" class="btn btn-danger" ng-click="item.editMode = false">Cancel</button>
+                    </div>
+
                 </div>
             </div>
         </section>
